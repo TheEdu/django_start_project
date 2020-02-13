@@ -1,0 +1,15 @@
+How to Change your django Project name
+######################################
+
+
+* Rename your project directory (new_project_name) and the following inside your project directory.
+
+* new_project_name/settings.py:
+	ROOT_URLCONF = 'new_project_name.urls'
+	WSGI_APPLICATION = 'new_project_name.wsgi.application'
+
+* new_project_name/wsgi.py
+	os.environ.setdefault("DJANGO_SETTINGS_MODULE", "new_project_name.settings")
+
+* manage.py
+	os.environ.setdefault("DJANGO_SETTINGS_MODULE", "new_project_name.settings")

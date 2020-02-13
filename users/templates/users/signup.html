@@ -1,0 +1,71 @@
+{% extends "users/base.html" %}
+
+{% block head_content %}
+<title>Registro</title>
+{% endblock %}
+
+{% block container %}
+
+    <div class="container">
+        <!-- Outer Row -->
+        <div class="row justify-content-center">
+
+          <div class="col-xl-10 col-lg-12 col-md-9">
+
+            <div class="card o-hidden border-0 shadow-lg my-5">
+              <div class="card-body p-0">
+                <!-- Nested Row within Card Body -->
+                <div class="row">
+                  <div class="col-lg-12">
+                    {% if form.errors %}
+                      <div class="alert alert-danger m-0 p-0 pt-2" style="border-radius:0px;">
+                        <ul>
+                        {% for field, error in form.errors.items %}
+                          <li>
+                            {{ error|striptags }}
+                          </li>
+                        {% endfor %}
+                        </ul>
+                      </div>
+                    {% endif %}
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-lg-12">
+                    <div class="px-5 py-3">
+                      <div class="text-center">
+                        <h1 class="h4 text-gray-900 mb-4">Registro</h1>
+                      </div>
+                      <!-- Signup Form -->
+                      <form class="user" action="{% url 'users:signup' %}" method="POST">
+                          {% csrf_token %}
+
+                          {% for field in form %}
+                            <div class="row">
+                              <label>
+                                {{ field.label }}:
+                              </label>
+                              {{ field }}
+                            </div>
+                          {% endfor %}
+
+                          <button class="btn btn-primary btn-block btn-user mt-3" type="submit">Enviar</button>
+
+                      </form>
+                      <hr>
+                      <div class="text-center">
+                        <a class="small" href="{% url "users:login" %}">Ingresar</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+    </div>
+
+{% endblock %}
