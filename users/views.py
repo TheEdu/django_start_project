@@ -6,6 +6,7 @@ from django.views.generic import DetailView, FormView, UpdateView
 
 # Models
 from django.contrib.auth.models import User
+from users.models import Profile
 
 # Forms
 from users.forms import SignupForm
@@ -22,7 +23,6 @@ class SignupView(FormView):
         form.save()
         return super().form_valid(form)
 
-# Create your views here.
 class LoginView(auth_views.LoginView):
     """Login view."""
 
@@ -33,3 +33,19 @@ class LogoutView(LoginRequiredMixin, auth_views.LogoutView):
     """Logout view."""
 
     template_name = 'users/logged_out.html'
+
+class UpdateProfileView(LoginRequiredMixin, UpdateView):
+    """Update profile view."""
+
+    template_name = 'users/update_profile.html'
+    model = Profile
+    fields = ['website', 'biography', 'phone_number', 'picture']
+
+    def get_object(self):
+        """Return user's profile."""
+        return self.request.user.profile
+
+    def get_success_url(self):
+        """Return to user's profile."""
+        username = self.object.user.username
+        return reverse('users:detail', kwargs={'username': username})

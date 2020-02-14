@@ -43,15 +43,16 @@
 
                           {% for field in form %}
                             <div class="row">
-                              <label>
-                                {{ field.label }}:
-                              </label>
-                              {{ field }}
+                              <div class="form-group col-12">
+                                <label style="font-weight: bold;">
+                                  {{ field.label }}:
+                                </label>
+                                {{ field }}
+                              </div>
                             </div>
                           {% endfor %}
 
                           <button class="btn btn-primary btn-block btn-user mt-3" type="submit">Enviar</button>
-
                       </form>
                       <hr>
                       <div class="text-center">
@@ -60,7 +61,9 @@
                     </div>
                   </div>
                 </div>
+
               </div>
+
             </div>
 
           </div>
