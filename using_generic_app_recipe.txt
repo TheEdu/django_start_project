@@ -1,0 +1,9 @@
+1- create new app 				--> python manage.py startapp new_app
+2- register new app 			--> django_start_project/settings.py
+3- register app's url 			--> django_start_project/urls.py
+4- import app models and forms	--> django_start_project/generic/views.py
+-------------------------------------------------------------------------
+5- create models 				--> django_start_project/new_app/models.py
+6- create forms					--> django_start_project/new_app/forms.py
+7- create urls					--> django_start_project/new_app/urls.py
+7- add to menu					--> django_start_project/templates/base.html
