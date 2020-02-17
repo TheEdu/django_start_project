@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load generic_tags %}
+
+{% block title %}
+	{{ title }}
+{% endblock %}
+
+{% block content %}
+
+	<!-- DataTables -->
+	<div class="card border-left-primary shadow mb-4">
+		<div class="card-header pt-3 pb-1">
+			<div class="row">
+				<div class="col-11 text-primary mb-0">
+					<h4 class="font-weight-bold">{{ list_title }}</h4>
+				</div>
+			</div>
+		</div>
+		<div class="card-body">
+			<div class="table-responsive">
+				<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+					<thead>
+						<tr>
+						{% for info_item in data_table.object_info %}
+							<th
+								class="{% if info_item.exportable %} export-col {% endif %}"> {{ info_item.label }} </th>
+						{% endfor %}
+						</tr>
+					</thead>
+					<tbody>
+					{% for obj in data_table.objects %}
+						<tr>
+						{% for info_item in data_table.object_info %}
+							<td> {{ obj | get_obj_attr:info_item.attr }} </td>
+						{% endfor %}
+						</tr>
+					{% endfor %}
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+
+{% endblock %}

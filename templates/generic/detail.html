@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load generic_tags %}
+
+{% block title %}
+	{{ title }}
+{% endblock %}
+
+{% block content %}
+
+	<div class="card border-left-primary shadow h-100 my-1">
+		<div class="card-body p-0">
+			<h4 class="card-header text-primary font-weight-bold">{{ detail_title }}</h4>
+			<div class="row no-gutters align-items-center">
+				<div class="col mr-2">
+					<div class="px-3 pt-2">
+						<ul>
+							{% for item in object_info %}
+								<li> <b><span>{{ item.label }}</span></b> {{ object | get_obj_attr:item.attr }} </li>
+							{% endfor %}
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="row no-gutters align-items-center">
+				<div class="col mr-2">
+					<a class="btn btn-info ml-2 mb-2" href="{% url return_url_name %}">Volver</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+{% endblock %}
